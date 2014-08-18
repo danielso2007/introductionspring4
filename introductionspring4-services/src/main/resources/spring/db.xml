@@ -12,8 +12,8 @@
 	<!-- Scans within the base package of the application for @Components to 
 		configure as beans -->
 	<bean id="placeholderConfig"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-		p:ignoreUnresolvablePlaceholders="true" p:ignoreResourceNotFound="true">
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		  p:ignoreUnresolvablePlaceholders="true" p:ignoreResourceNotFound="true">
 		<property name="locations">
 			<list>
 				<value>classpath:spring/db.properties</value>
@@ -44,13 +44,19 @@
 	<!-- VIA JNDI <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/${jdbc.datasource}"/> -->
 
 	<bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="${db.driver}" />
+		  destroy-method="close"
+		  p:driverClassName="${db.driver}"
+		  p:url="${db.url}"
+		  p:username="${db.username}"
+		  p:password="${db.password}"
+		  p:initialSize="${db.initialSize}"
+		  p:maxActive="${db.maxActive">
+		<!-- <property name="driverClassName" value="${db.driver}" />
 		<property name="url" value="${db.url}" />
 		<property name="username" value="${db.username}" />
 		<property name="password" value="${db.password}" />
 		<property name="initialSize" value="${db.initialSize}" />
-		<property name="maxActive" value="${db.maxActive}" />
+		<property name="maxActive" value="${db.maxActive}" /> -->
 	</bean>
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">

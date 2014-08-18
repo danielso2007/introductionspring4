@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	                    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -9,6 +10,16 @@
 	                    http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context-3.0.xsd
                         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+<!--
+singleton      - (Padrão) Escopos uma única definição de bean a uma única instância do objeto por container Spring IoC.
+prototype      - Escopos de uma única definição de bean para qualquer número de instâncias de objetos.
+request        - Escopos de uma única definição de bean para o ciclo de vida de uma única solicitação HTTP; ou seja, cada solicitação HTTP
+                 tem sua própria instância de um bean criado ao largo das costas de uma única definição de bean. Só é válido no contexto de Primavera
+                 ApplicationContext web-aware.
+session        - Escopos de uma única definição de bean para o ciclo de vida de uma sessão HTTP. Só é válido no contexto de Primavera ApplicationContext web-aware.
+global session - Escopos de uma única definição de bean para o ciclo de vida de uma sessão HTTP global. Normalmente só é válido quando usado em um contexto portlet. Só é válido no contexto de Primavera ApplicationContext web-aware.
+application    - Escopos de uma única definição de bean para o ciclo de vida de um ServletContext. Só é válido no contexto de Primavera ApplicationContext web-aware.
+-->
 
 	<import resource="classpath:spring/db.xml" />
 
