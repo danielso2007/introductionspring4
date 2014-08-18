@@ -6,11 +6,6 @@
 	version="2.1">
 
 	<persistence-unit name="acme" transaction-type="RESOURCE_LOCAL">
-		<properties>
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider" />
-		</properties>
 	</persistence-unit>
 
 </persistence>

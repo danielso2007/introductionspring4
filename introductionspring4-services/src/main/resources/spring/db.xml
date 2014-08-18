@@ -1,30 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd	
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd" default-autowire="byName">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
+	default-autowire="byName">
 
-	<!-- Scans within the base package of the application for @Components to configure as beans -->
+	<!-- Scans within the base package of the application for @Components to 
+		configure as beans -->
 	<bean id="placeholderConfig"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:spring/db.properties" />
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		p:ignoreUnresolvablePlaceholders="true" p:ignoreResourceNotFound="true">
+		<property name="locations">
+			<list>
+				<value>classpath:spring/db.properties</value>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="showSql" value="true" />
-				<property name="generateDdl" value="true" />
+				<property name="showSql" value="${db.showSql}" />
+				<property name="generateDdl" value="${db.generateDdl}" />
 				<property name="databasePlatform" value="${db.dialect}" />
 			</bean>
-		</property>		
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">${db.dialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${db.hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.show_sql">${db.hibernate.show_sql}</prop>
+				<prop key="hibernate.cache.provider_class">${db.hibernate.cache.provider_class}</prop>
+				<prop key="hibernate.use_sql_comments">${db.hibernate.use_sql_comments}</prop>
+			</props>
+		</property>
 	</bean>
+
+	<!-- VIA JNDI <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/${jdbc.datasource}"/> -->
 
 	<bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource"
 		destroy-method="close">
@@ -37,14 +54,13 @@
 	</bean>
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-
 	</bean>
-	
+
 
 
 	<tx:annotation-driven />
 
 	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
-	
+
 </beans>

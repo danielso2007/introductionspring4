@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>7</version>
-	</parent>
+	<name>Introduction Spring4</name>
 	<groupId>br.com.estudo</groupId>
 	<artifactId>introductionspring4</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<description>This archetype is based on org.fluttercode.knappsack/spring-jsf-jpa-archetype/1.1 one.
-This new archetype upgrade libraries to JSF 2.2, Spring 4 and JPA 2.1</description>
-	<name>JSF2 Spring4 JPA2 Archetype</name>
+	<modules>
+		<module>introductionspring4-web</module>
+		<module>introductionspring4-services</module>
+	</modules>
+	<description>Introduction Spring 4</description>
 	<scm>
-		<url>https://bitbucket.org/cosenonjaviste/jsf2-spring4-jpa2-archetype</url>
-		<connection>scm:git:https://bitbucket.org/cosenonjaviste/jsf2-spring4-jpa2-archetype.git</connection>
-		<developerConnection>scm:git:https://bitbucket.org/cosenonjaviste/jsf2-spring4-jpa2-archetype.git</developerConnection>
+		<url>https://github.com/danielso2007/introductionspring4</url>
+		<connection>scm:git@github.com:danielso2007/introductionspring4.git</connection>
+		<developerConnection>scm:git@github.com:danielso2007/introductionspring4.git</developerConnection>
+		<tag>introductionspring4</tag>
 	</scm>
-	<url>http://www.cosenonjaviste.it</url>
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
@@ -28,21 +27,27 @@ This new archetype upgrade libraries to JSF 2.2, Spring 4 and JPA 2.1</descripti
 	</licenses>
 	<developers>
 		<developer>
-			<id>acomo</id>
-			<name>Andrea Como</name>
-			<email>info@cosenonjaviste.it</email>
-			<url>https://bitbucket.org/cosenonjaviste</url>
+			<id>daniel.oliveira</id>
+			<name>Daniel Oliveira</name>
+			<email>daniel.oliveira.work@gmail.com</email>
+			<url>http://danielso2007.github.io/introductionspring4/</url>
 		</developer>
 	</developers>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.0.1.RELEASE</spring.version>
+		<spring.version>4.0.3.RELEASE</spring.version>
 		<slf4j.version>1.5.10</slf4j.version>
 		<java.version>1.7</java.version>
 		<junit.version>4.11</junit.version>
 
 		<jsf.version>2.2.5</jsf.version>
+		<jstl.version>1.2</jstl.version>
+		<servlet.version>3.1.0</servlet.version>
+		<jsp-api.version>2.3.1</jsp-api.version>
+		<el-api.version>2.2.5</el-api.version>
+		<glassfish.web.version>2.2.6</glassfish.web.version>
+		
 		<hibernate.validator.version>5.0.2.Final</hibernate.validator.version>
 		<entitymanager.version>4.3.1.Final</entitymanager.version>
 		<commons.collections.version>3.1</commons.collections.version>
@@ -60,7 +65,6 @@ This new archetype upgrade libraries to JSF 2.2, Spring 4 and JPA 2.1</descripti
 			</dependency>
 
 			<!-- JSF Dependencies -->
-
 			<dependency>
 				<groupId>com.sun.faces</groupId>
 				<artifactId>jsf-api</artifactId>
@@ -73,16 +77,43 @@ This new archetype upgrade libraries to JSF 2.2, Spring 4 and JPA 2.1</descripti
 				<version>${jsf.version}</version>
 				<scope>compile</scope>
 			</dependency>
-
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-log4j12</artifactId>
 				<version>${slf4j.version}</version>
 				<scope>compile</scope>
 			</dependency>
+			
+			<!-- Servlet -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${jstl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${servlet.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>javax.servlet.jsp-api</artifactId>
+				<version>${jsp-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.el</groupId>
+				<artifactId>javax.el-api</artifactId>
+				<version>${el-api.version}</version>
+			</dependency>
+			
+			<!-- EL -->
+			<dependency>
+				<groupId>org.glassfish.web</groupId>
+				<artifactId>javax.el</artifactId>
+				<version>${glassfish.web.version}</version>
+			</dependency>
 
 			<!-- JPA Persistence Dependencies -->
-
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-entitymanager</artifactId>
@@ -143,7 +174,6 @@ This new archetype upgrade libraries to JSF 2.2, Spring 4 and JPA 2.1</descripti
 			</dependency>
 
 			<!-- DB Dependencies -->
-
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-dbcp</artifactId>
@@ -163,7 +193,7 @@ This new archetype upgrade libraries to JSF 2.2, Spring 4 and JPA 2.1</descripti
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>2.5.1</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
@@ -172,8 +202,5 @@ This new archetype upgrade libraries to JSF 2.2, Spring 4 and JPA 2.1</descripti
 
 		</plugins>
 	</build>
-  <modules>
-    <module>introductionspring4-web</module>
-    <module>introductionspring4-services</module>
-  </modules>
+	<url>http://danielso2007.github.io/introductionspring4/</url>
 </project>
