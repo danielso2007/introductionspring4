@@ -1,7 +1,5 @@
 package br.com.estudo.introductionspring4.services;
 
-import br.com.estudo.introductionspring4.web.model.Task;
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,6 +7,8 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import br.com.estudo.introductionspring4.web.model.Task;
 
 @Component
 public class TaskDao {
@@ -21,10 +21,8 @@ public class TaskDao {
 		entityManager.persist(task);
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Task> list() {
-		return entityManager.createQuery("select t from Task t")
-				.getResultList();
+		return entityManager.createQuery("select t from Task t", Task.class).getResultList();
 	}
 
 }

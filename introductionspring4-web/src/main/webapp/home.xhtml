@@ -7,30 +7,43 @@
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
 	template="/resources/templates/template.xhtml">
 	<ui:define name="content">
-		<h1><h:outputText value="Hello From JSF" /></h1>
-		Message : #{homeBean.message}<br />
-		<br />
-		<h2>Tasks</h2>
-		<table>
-			<ui:repeat value="#{taskBB.tasks}" var="v_task">
-				<tr>
-					<td>#{v_task.id}</td>
-					<td>#{v_task.description}</td>
-				</tr>
-			</ui:repeat>
-		</table>
-
-		<h:form>
-			<div jsf:id="wrapper" style="border-top: 1px solid #d0d0d0; margin-top: 12px; padding-top: 12px">
-				<h:inputText value="#{taskBB.task.description}" id="taskDesc" p:placeholder="Type a task ID" maxlength="48"
-				             required="true" label="Task" styleClass="form-control" style="with: 100px;">
-					<f:validateLength maximum="48"/>
-				</h:inputText>
-				<h:commandButton action="#{taskBB.saveTask}" value="Add" styleClass="btn btn-primary"/>
-				<h:message for="taskDesc" style="color : red;padding-left : 8px"/>
+		<div class="row">
+			<div class="col-md-12">
+			    <h2>#{msg.homeTitle}</h2>
 			</div>
+		</div>
+		<div class="row">
+			<div id="resultTask" class="col-md-6">
+				<table>
+					<ui:repeat value="#{taskBB.tasks}" var="v_task">
+						<tr>
+							<td>#{v_task.id}</td>
+							<td> </td>
+							<td>#{v_task.description}</td>
+						</tr>
+					</ui:repeat>
+				</table>
+			</div>
+		</div>
 
-		</h:form>
+        <div class="row">
+            <div class="col-md-12" style="border-top: 1px solid #d0d0d0; margin-top: 12px; padding-top: 12px">
+            </div>
+            <div class="col-md-12">
+				<h:form styleClass="form-inline" role="form" prependId="false">
+						<h:inputText type="text" value="#{taskBB.task.description}"
+						             id="taskDesc" p:placeholder="#{msg.homePlaceholderNameTask}"
+						             maxlength="48"
+						             required="true" label="Task" styleClass="form-control" style="with: 100px;">
+							<f:validateLength maximum="48"/>
+						</h:inputText>
+						<h:commandButton action="#{taskBB.saveTask}" value="#{msg.homeButtonAdd}" styleClass="btn btn-primary"/>
+						<br/>
+						<h:message for="taskDesc" style="padding-left : 8px;" errorClass="label label-danger" infoClass="label label-success"
+						           warnClass="label label-warning" showDetail="true" showSummary="false"/>
+				</h:form>
+            </div>
+        </div>
 		
 	</ui:define>
 </ui:composition>

@@ -1,39 +1,61 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	  xmlns:jsf="http://xmlns.jcp.org/jsf"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 	<title>#{msg.templateTitlePage}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<h:outputStylesheet library="css" name="screen.css" />
+	<h:outputStylesheet library="css" name="normalize.css" />
+	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="bootstrap-theme.min.css" />
+	<h:outputScript library="js" name="jquery.min.js" />
 	<h:outputScript library="js" name="main.js" />
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<ui:insert name="headTemplate"/>
 </h:head>
 <h:body>
-	<h:panelGroup id="page" layout="block">
-		<h:panelGroup id="header" layout="block">
-			<h1><a href="home.jsf">#{msg.templateTitle}</a></h1>
-		</h:panelGroup>
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
 		
-		<h:panelGroup id="container" layout="block">
-			<h:panelGroup id="sidebar" layout="block">
-				<h1>#{msg.titleSidebarTemplate}</h1> #{msg.conteudoSideBar}
-			</h:panelGroup>
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				
+				<a class="navbar-brand" href="#">Estudo Spring 4</a>
+			</div>
 			
-			<h:panelGroup id="content" layout="block">
-				<ui:insert name="content">Main Content</ui:insert>
-			</h:panelGroup>
-			
-		</h:panelGroup>
-		
-		<h:panelGroup id="footer" layout="block">#{msg.footerText}<br />#{msg.footerText2} <a
-				href="http://#{msg.footerText3}">#{msg.footerText3}</a>
-		</h:panelGroup>
-	</h:panelGroup>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">#{msg.templateMenuHome}</a></li>
+					<li><a href="#about">#{msg.templateMenuAboult}</a></li>
+					<li><a href="#contact">#{msg.templateMenuContato}</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+
+	<div class="container">
+
+		<div class="starter-template">
+		    <ui:insert name="content">
+				<h1>Bootstrap starter template</h1>
+				<p class="lead">Use this document as a way to quickly start any
+					new project. All you get is this text and a mostly barebones HTML
+					document.</p>
+		    </ui:insert>
+		</div>
+
+	</div>
+	<!-- /.container -->
 
 </h:body>
 </html>
