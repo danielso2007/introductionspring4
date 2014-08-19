@@ -21,12 +21,12 @@
 		</table>
 
 		<h:form>
-			<div jsf:id="wrapper"
-				style="border-top: 1px solid #d0d0d0; margin-top: 12px; padding-top: 12px">
-				<h:inputText value="#{taskBB.task.description}" id="taskDesc" p:placeholder="Type a task ID" maxlength="48" required="true" label="Task">
+			<div jsf:id="wrapper" style="border-top: 1px solid #d0d0d0; margin-top: 12px; padding-top: 12px">
+				<h:inputText value="#{taskBB.task.description}" id="taskDesc" p:placeholder="Type a task ID" maxlength="48"
+				             required="true" label="Task" styleClass="form-control" style="with: 100px;">
 					<f:validateLength maximum="48"/>
 				</h:inputText>
-				<h:commandButton action="#{taskBB.saveTask}" value="Add" />
+				<h:commandButton action="#{taskBB.saveTask}" value="Add" styleClass="btn btn-primary"/>
 				<h:message for="taskDesc" style="color : red;padding-left : 8px"/>
 			</div>
 

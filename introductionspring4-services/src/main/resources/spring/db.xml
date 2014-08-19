@@ -50,7 +50,7 @@
 		  p:username="${db.username}"
 		  p:password="${db.password}"
 		  p:initialSize="${db.initialSize}"
-		  p:maxActive="${db.maxActive">
+		  p:maxActive="${db.maxActive}">
 		<!-- <property name="driverClassName" value="${db.driver}" />
 		<property name="url" value="${db.url}" />
 		<property name="username" value="${db.username}" />
