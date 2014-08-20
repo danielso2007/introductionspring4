@@ -1,4 +1,4 @@
-package br.com.estudo.introductionspring4.web.model;
+package br.com.estudo.introductionspring4.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

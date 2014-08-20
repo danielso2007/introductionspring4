@@ -4,30 +4,37 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Value;
 
+import br.com.estudo.introductionspring4.model.Task;
 import br.com.estudo.introductionspring4.services.TaskService;
-import br.com.estudo.introductionspring4.web.model.Task;
+import br.com.estudo.introductionspring4.stereotype.RequestScopeSpring;
 
-@Component("taskBB")
-@Scope("request")
+@Named("taskBB")
+@RequestScopeSpring
 @RequestScoped
 @ManagedBean
 public class TaskBackingBean extends BaseBean {
 
     private static final long serialVersionUID = 1L;
 
-    private static final Logger logger = LoggerFactory.getLogger(TaskBackingBean.class);
+    private static final Log logger = LogFactory.getLog(TaskBackingBean.class);
 
+    /* Exemplo obter valor de db.properties */
+    @Value("${db.url}")
+    private String url;
+    @Value("${db.driver}")
+    private String driver;
+    
 	private Task task = new Task();
 	private List<Task> tasks;
-
-	@Autowired
+	
+	@Inject
 	private TaskService taskService;
 
 	
@@ -36,6 +43,7 @@ public class TaskBackingBean extends BaseBean {
 	}
 
 	public void saveTask() {
+	    logger.info(String.format("Banco --> URL: %s -- DRIVER: %s", url, driver));
 	    logger.debug("Salvando Task...");
 	    taskService.saveOrUpdate(task);
 		task = new Task();
@@ -54,5 +62,4 @@ public class TaskBackingBean extends BaseBean {
 		return tasks;
 		
 	}
-
 }

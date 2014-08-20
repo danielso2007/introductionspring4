@@ -3,7 +3,7 @@ package br.com.estudo.introductionspring4.services;
 import java.io.Serializable;
 import java.util.List;
 
-import br.com.estudo.introductionspring4.web.model.Task;
+import br.com.estudo.introductionspring4.model.Task;
 
 public interface TaskService extends Serializable {
 

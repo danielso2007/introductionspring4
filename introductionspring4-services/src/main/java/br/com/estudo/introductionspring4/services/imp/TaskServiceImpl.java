@@ -2,20 +2,21 @@ package br.com.estudo.introductionspring4.services.imp;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.estudo.introductionspring4.dao.TaskDao;
+import br.com.estudo.introductionspring4.model.Task;
 import br.com.estudo.introductionspring4.services.TaskService;
-import br.com.estudo.introductionspring4.web.model.Task;
 
-@Component
+@Service
 public class TaskServiceImpl implements TaskService {
 
     private static final long serialVersionUID = 1L;
 
-    @Autowired
+    @Inject
     private TaskDao taskDao;
     
     @Override

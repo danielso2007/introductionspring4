@@ -50,6 +50,11 @@
 			<artifactId>spring-test</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+		</dependency>
+
 		<!-- DB Dependencies -->
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
