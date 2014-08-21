@@ -50,8 +50,8 @@
 		<el-api.version>2.2.5</el-api.version>
 		<glassfish.web.version>2.2.6</glassfish.web.version>
 
-		<hibernate.validator.version>5.0.2.Final</hibernate.validator.version>
-		<entitymanager.version>4.3.1.Final</entitymanager.version>
+		<hibernate.validator.version>5.1.1.Final</hibernate.validator.version>
+		<entitymanager.version>4.3.6.Final</entitymanager.version>
 		<commons.collections.version>3.1</commons.collections.version>
 		<hsqldb.version>2.3.1</hsqldb.version>
 		<tomcat.dbcp>7.0.41</tomcat.dbcp>
@@ -140,6 +140,13 @@
 			</dependency>
 
 			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate.validator.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
 				<groupId>commons-collections</groupId>
 				<artifactId>commons-collections</artifactId>
 				<version>${commons.collections.version}</version>
@@ -195,16 +202,15 @@
 
 			<!-- Using JSR 330 Standard Annotations -->
 			<!-- http://docs.spring.io/spring/docs/4.0.6.RELEASE/spring-framework-reference/htmlsingle/#beans-standard-annotations -->
-			<!-- 
-			    Spring              javax.inject.*    javax.inject restrictions / comments
-	            @Autowired          @Inject           @Inject has no required attribute
-	            @Component          @Named            -
-	            @Scope("singleton") @Singleton        The JSR-330 default scope is like Spring’s prototype. However, in order to keep it consistent with Spring’s general defaults, a JSR-330 bean declared in the Spring container is a singleton by default. In order to use a scope other than singleton, you should use Spring’s @Scope annotation.javax.inject also provides a @Scope annotation. Nevertheless, this one is only intended to be used for creating your own annotations.
-	            @Qualifier          @Named            -
-	            @Value              -                 no equivalent
-	            @Required           -                 no equivalent
-	            @Lazy               -                 no equivalent
-			-->
+			<!-- Spring javax.inject.* javax.inject restrictions / comments @Autowired 
+				@Inject @Inject has no required attribute @Component @Named - @Scope("singleton") 
+				@Singleton The JSR-330 default scope is like Spring’s prototype. However, 
+				in order to keep it consistent with Spring’s general defaults, a JSR-330 
+				bean declared in the Spring container is a singleton by default. In order 
+				to use a scope other than singleton, you should use Spring’s @Scope annotation.javax.inject 
+				also provides a @Scope annotation. Nevertheless, this one is only intended 
+				to be used for creating your own annotations. @Qualifier @Named - @Value 
+				- no equivalent @Required - no equivalent @Lazy - no equivalent -->
 			<dependency>
 				<groupId>javax.inject</groupId>
 				<artifactId>javax.inject</artifactId>
