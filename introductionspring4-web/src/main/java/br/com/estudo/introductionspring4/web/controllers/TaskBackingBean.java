@@ -10,6 +10,7 @@ import javax.inject.Named;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 
 import br.com.estudo.introductionspring4.model.Task;
 import br.com.estudo.introductionspring4.services.TaskService;
@@ -19,6 +20,7 @@ import br.com.estudo.introductionspring4.stereotype.RequestScopeSpring;
 @RequestScopeSpring
 @RequestScoped
 @ManagedBean
+@Controller
 public class TaskBackingBean extends BaseBean {
 
     private static final long serialVersionUID = 1L;

@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.estudo.introductionspring4.dao.GenericDao;
 
-@Transactional(propagation = Propagation.REQUIRED)
+@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T, ID> {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +42,7 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
     }
 
     @Override
+    @Transactional(readOnly = true)
     public T findById(ID id) {
         return entityManager.find(typeClass, id);
     }
@@ -52,6 +53,7 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<T> list() {
         return entityManager.createQuery("FROM " + typeClass.getName() + " ORDER BY id", typeClass).getResultList();
     }

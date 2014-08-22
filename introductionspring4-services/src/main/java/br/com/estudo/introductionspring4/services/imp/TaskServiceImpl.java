@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.estudo.introductionspring4.dao.TaskDao;
@@ -12,6 +13,7 @@ import br.com.estudo.introductionspring4.model.Task;
 import br.com.estudo.introductionspring4.services.TaskService;
 
 @Service
+@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
 public class TaskServiceImpl implements TaskService {
 
     private static final long serialVersionUID = 1L;
@@ -20,7 +22,6 @@ public class TaskServiceImpl implements TaskService {
     private TaskDao taskDao;
     
     @Override
-    @Transactional
     public void saveOrUpdate(Task task) {
         if (task.getId() == null) {
             taskDao.save(task);
@@ -30,8 +31,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    @Transactional
     public List<Task> list() {
-        return taskDao.list();
+        return taskDao.listarTask();
     }
 }
