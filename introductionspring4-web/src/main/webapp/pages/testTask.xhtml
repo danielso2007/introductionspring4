@@ -5,11 +5,25 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-	template="/resources/templates/template.xhtml">
+	template="../resources/templates/template.xhtml">
+	
+	<ui:define name="navBar">
+		<li><a href="../pages/home.jsf">#{msg.templateMenuHome}</a></li>
+		<li class="active"><a href="">#{msg.templateMenuTask}</a></li>
+		<li><a href="#about">#{msg.templateMenuAboult}</a></li>
+		<li><a href="#contact">#{msg.templateMenuContato}</a></li>
+	</ui:define>
+	
+	<ui:define name="navigationalHierarchy">
+	    <li><a href="../pages/home.jsf">Home</a></li>
+	    <li class="active">Task</li>
+	</ui:define>
+	
+	
 	<ui:define name="content">
 		<div class="row">
 			<div class="col-md-12">
-			    <h2>#{msg.homeTitle}</h2>
+			    <h2>#{msg.testTaskTitle}</h2>
 			</div>
 		</div>
 		<div class="row">
@@ -32,12 +46,12 @@
             <div class="col-md-12">
 				<h:form styleClass="form-inline" role="form" prependId="false">
 						<h:inputText type="text" value="#{taskBB.task.description}"
-						             id="taskDesc" p:placeholder="#{msg.homePlaceholderNameTask}"
+						             id="taskDesc" p:placeholder="#{msg.testTaskPlaceholderNameTask}"
 						             maxlength="48"
 						             required="true" label="Task" styleClass="form-control" style="with: 100px;">
 							<f:validateLength maximum="48"/>
 						</h:inputText>
-						<h:commandButton action="#{taskBB.saveTask}" value="#{msg.homeButtonAdd}" styleClass="btn btn-primary"/>
+						<h:commandButton action="#{taskBB.saveTask}" value="#{msg.testTaskButtonAdd}" styleClass="btn btn-primary"/>
 						<br/>
 						<h:message for="taskDesc" style="padding-left : 8px;" errorClass="label label-danger" infoClass="label label-success"
 						           warnClass="label label-warning" showDetail="true" showSummary="false"/>

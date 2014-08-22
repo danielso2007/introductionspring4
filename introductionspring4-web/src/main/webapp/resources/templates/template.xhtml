@@ -28,6 +28,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 				</button>
 				
 				<a class="navbar-brand" href="#">Estudo Spring 4</a>
@@ -35,23 +36,33 @@
 			
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">#{msg.templateMenuHome}</a></li>
-					<li><a href="#about">#{msg.templateMenuAboult}</a></li>
-					<li><a href="#contact">#{msg.templateMenuContato}</a></li>
+				    <ui:insert name="navBar">
+				        <li class="active">#{msg.templateMenuHome}</li>
+						<li><a href="../pages/testTask.jsf">#{msg.templateMenuTask}</a></li>
+						<li><a href="#about">#{msg.templateMenuAboult}</a></li>
+						<li><a href="#contact">#{msg.templateMenuContato}</a></li>
+				    </ui:insert>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
 	</div>
-
+	
+	<ol class="breadcrumb">
+		<ui:insert name="navigationalHierarchy">
+		</ui:insert>
+	</ol>
+	
 	<div class="container">
 
 		<div class="starter-template">
+		
 		    <ui:insert name="content">
 				<h1>Bootstrap starter template</h1>
 				<p class="lead">Use this document as a way to quickly start any
 					new project. All you get is this text and a mostly barebones HTML
 					document.</p>
 		    </ui:insert>
+		    
 		</div>
 
 	</div>

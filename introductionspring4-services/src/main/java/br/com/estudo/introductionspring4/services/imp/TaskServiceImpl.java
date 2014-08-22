@@ -12,7 +12,7 @@ import br.com.estudo.introductionspring4.dao.TaskDao;
 import br.com.estudo.introductionspring4.model.Task;
 import br.com.estudo.introductionspring4.services.TaskService;
 
-@Service
+@Service("taskService")
 @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
 public class TaskServiceImpl implements TaskService {
 

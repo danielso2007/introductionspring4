@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,29 +33,29 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
     }
     
     @Override
-    public void save(T obj) {
+    public void save(T obj) throws DataAccessException {
         entityManager.persist(obj);
     }
     
     @Override
-    public T update(T obj) {
+    public T update(T obj) throws DataAccessException {
         return entityManager.merge(obj);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public T findById(ID id) {
+    public T findById(ID id) throws DataAccessException {
         return entityManager.find(typeClass, id);
     }
 
     @Override
-    public void delete(T obj) {
+    public void delete(T obj) throws DataAccessException {
         entityManager.remove(obj);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<T> list() {
+    public List<T> list() throws DataAccessException {
         return entityManager.createQuery("FROM " + typeClass.getName() + " ORDER BY id", typeClass).getResultList();
     }
 

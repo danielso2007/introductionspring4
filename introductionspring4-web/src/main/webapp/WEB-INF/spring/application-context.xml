@@ -27,6 +27,11 @@ application    - Escopos de uma única definição de bean para o ciclo de vida 
 -->
 
 	<import resource="classpath:spring/db.xml" />
+	<import resource="spring-security-config.xml" />
+
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+    
+    <context:component-scan base-package="br.com.estudo.introductionspring4" />
 
 	<bean id="log4jInitialization"
 		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
@@ -39,7 +44,5 @@ application    - Escopos de uma única definição de bean para o ciclo de vida 
 			</list>
 		</property>
 	</bean>
-
-	<context:component-scan base-package="br.com.estudo.introductionspring4" />
 
 </beans>

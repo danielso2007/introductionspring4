@@ -37,6 +37,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.0.6.RELEASE</spring.version>
+		<spring.security.version>3.2.5.RELEASE</spring.security.version>
 		<javax.inject.version>1</javax.inject.version>
 		<slf4j.version>1.5.10</slf4j.version>
 		<log4j.version>1.2.14</log4j.version>
@@ -56,6 +57,14 @@
 		<hsqldb.version>2.3.1</hsqldb.version>
 		<tomcat.dbcp>7.0.41</tomcat.dbcp>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>spring-snapshot</id>
+			<name>Spring Snapshot Repository</name>
+			<url>http://repo.springsource.org/snapshot</url>
+		</repository>
+	</repositories>
 
 	<dependencyManagement>
 		<dependencies>
@@ -198,6 +207,19 @@
 				<version>${spring.version}</version>
 				<type>jar</type>
 				<scope>test</scope>
+			</dependency>
+
+			<!-- Spring Security -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring.security.version}</version>
 			</dependency>
 
 			<!-- Using JSR 330 Standard Annotations -->

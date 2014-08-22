@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	template="../resources/templates/template.xhtml">
+
+	<ui:define name="navBar">
+		<li class="active"><a href="#">#{msg.templateMenuHome}</a></li>
+		<li><a href="../pages/testTask.jsf">#{msg.templateMenuTask}</a></li>
+		<li><a href="#about">#{msg.templateMenuAboult}</a></li>
+		<li><a href="#contact">#{msg.templateMenuContato}</a></li>
+	</ui:define>
+
+	<ui:define name="navigationalHierarchy">
+	    <li class="active">Home</li>
+	</ui:define>
+	
+	<ui:define name="content">
+		<div class="row">
+			<div class="col-md-12 page-header">
+			    <h1 style="margin-top: -65px;">#{msg.homeTitle} <small>#{msg.homeTitleSmall}</small></h1>
+			</div>
+		</div>
+		<div class="row">
+            <div class="col-md-2 col-sm-2">
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-12 txtJustify">
+                <p>#{msg.homeTextBody}</p>
+            </div>
+            <div class="col-md-2 col-sm-2">
+            </div>
+		</div>
+	</ui:define>
+</ui:composition>

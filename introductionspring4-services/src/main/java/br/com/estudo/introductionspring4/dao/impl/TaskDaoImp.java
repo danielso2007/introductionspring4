@@ -7,6 +7,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -27,14 +28,15 @@ public class TaskDaoImp extends GenericDaoImpl<Task, Long> implements TaskDao {
     
     @Override
     @Transactional(readOnly = true)
-    public List<Task> listarTask() {
-    	List<Task> tasks = this.jdbcTemplate.query("select description from task", new TaskMapper());
+    public List<Task> listarTask() throws DataAccessException {
+    	List<Task> tasks = this.jdbcTemplate.query("select id, description from task", new TaskMapper());
     	return tasks;
     }
     
     private static final class TaskMapper implements RowMapper<Task> {
         public Task mapRow(ResultSet rs, int rowNum) throws SQLException {
         	Task task = new Task();
+        	task.setId(rs.getLong("id"));
             task.setDescription(rs.getString("description"));
             return task;
         }
@@ -44,6 +46,5 @@ public class TaskDaoImp extends GenericDaoImpl<Task, Long> implements TaskDao {
 	public void setDataSource(DataSource dataSource) {
     	jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-    
     
 }

@@ -1,7 +1,100 @@
 body {
-  padding-top: 50px;
+	padding-top: 50px;
 }
+
 .starter-template {
-  padding: 40px 15px;
-  text-align: center;
+	padding: 40px 15px;
+	text-align: center;
+}
+
+.barraPage {
+	border-top: 1px solid #d0d0d0;
+	margin-top: 1px;
+	padding-top: 1px;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+}
+
+.show-grid [class^=col-] {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #eee;
+	background-color: rgba(86, 61, 124, .15);
+	border: 1px solid #ddd;
+	border: 1px solid rgba(86, 61, 124, .2);
+}
+
+.txtError {
+	color: RED;
+}
+
+.txtLeft {
+	text-align: left;
+}
+
+.txtRight {
+	text-align: right;
+}
+
+.txtCentar {
+	text-align: center;
+}
+
+.txtJustify {
+	text-align: justify;
+}
+
+/* LOGIN */
+.wrapper {
+	margin-top: 80px;
+	margin-bottom: 80px;
+}
+
+.form-signin {
+	max-width: 380px;
+	padding: 15px 35px 45px;
+	margin: 0 auto;
+	background-color: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	.form-signin-heading,
+	.checkbox {
+	  margin-bottom: 30px;
+    }
+}
+
+.checkbox {
+	font-weight: normal;
+}
+
+.form-control {
+	position: relative;
+	font-size: 16px;
+	height: auto;
+	padding: 10px;
+	@include box-sizing(border-box);
+}
+
+input[type="text"] {
+	margin-bottom: -1px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+input[type="password"] {
+	margin-bottom: 8px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+/* MESSAGE ERROR */
+.msgError {
+    color: RED; 	
+}
+
+.msgWarn {
+    color: #FFCC00; 	
+}
+
+.msgInfo {
+    color: green; 	
 }

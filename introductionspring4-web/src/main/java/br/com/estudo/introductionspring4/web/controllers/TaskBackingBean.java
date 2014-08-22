@@ -19,7 +19,7 @@ import br.com.estudo.introductionspring4.stereotype.RequestScopeSpring;
 @Named("taskBB")
 @RequestScopeSpring
 @RequestScoped
-@ManagedBean
+@ManagedBean(name = "taskBB")
 @Controller
 public class TaskBackingBean extends BaseBean {
 
