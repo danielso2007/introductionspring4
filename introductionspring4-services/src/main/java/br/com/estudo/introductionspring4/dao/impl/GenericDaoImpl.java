@@ -18,10 +18,10 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 
     private static final long serialVersionUID = 1L;
 
-    private Class<T> typeClass;
+    Class<T> typeClass;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    EntityManager entityManager;
     
     @SuppressWarnings("unchecked")
     public GenericDaoImpl() {

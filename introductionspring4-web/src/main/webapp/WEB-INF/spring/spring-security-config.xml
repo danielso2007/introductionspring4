@@ -1,32 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-           http://www.springframework.org/schema/security
-           http://www.springframework.org/schema/security/spring-security.xsd">
+<beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+						http://www.springframework.org/schema/security
+						http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-	<global-method-security secured-annotations="enabled" jsr250-annotations="enabled" />
+	<beans:bean id="concurrencyFilter" class="org.springframework.security.web.session.ConcurrentSessionFilter">
+		<beans:property name="sessionRegistry" ref="sessionRegistry" />
+		<beans:property name="expiredUrl" value="/session-expired.htm" />
+	</beans:bean>
 
-	<http use-expressions="true" auto-config="true">
+	<beans:bean id="sas" class="org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy">
+		<beans:constructor-arg name="sessionRegistry" ref="sessionRegistry" />
+		<beans:property name="maximumSessions" value="1" />
+	</beans:bean>
 
-		<intercept-url pattern="/pages/**" access="hasRole('ROLE_USER')" />
-		<intercept-url pattern="/pages/login" access="permitAll" />
+	<beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
 
-		<form-login login-page="/pages/login.jsf" always-use-default-target="true" default-target-url="/pages/error.jsf" login-processing-url="/login" authentication-failure-url="/pages/login.jsf?error=true" />
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/pages/*" access="isAuthenticated()" />
+		<intercept-url pattern="/pages/user/*" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/pages/admin/*" access="hasRole('ROLE_ADMIN')" />
+		<form-login login-page="/login.jsf" default-target-url="/login.jsf" authentication-failure-url="/login.jsf?erro=true" always-use-default-target="true" />
 
-		<logout logout-url="/pages/login" logout-success-url="/pages/login.jsf" invalidate-session="true" />
+		<access-denied-handler error-page="/pages/error.jsf?erro=true" />
 
-       <session-management invalid-session-url="/pages/invalidSession.jsf" />
-
-		<!-- <logout delete-cookies="JSESSIONID" /> -->
-
+		<custom-filter position="CONCURRENT_SESSION_FILTER" ref="concurrencyFilter" />
+		<session-management session-authentication-strategy-ref="sas" />
+		<logout delete-cookies="JSESSIONID" />
 	</http>
 
-	<authentication-manager alias="authenticationManager">
-		<authentication-provider user-service-ref="usuarioDetailsService">
-		    <password-encoder hash="md5" />
+	<beans:bean id="authProvider" class="br.com.estudo.introductionspring4.web.controllers.Authenticator">
+		<aop:scoped-proxy />
+	</beans:bean>
+
+	<beans:bean id="userSession" class="br.com.estudo.introductionspring4.web.beans.UserSession" scope="session">
+		<aop:scoped-proxy />
+	</beans:bean>
+
+	<authentication-manager>
+		<authentication-provider ref="authProvider">
 		</authentication-provider>
+		<!-- 
+		<password-encoder hash="md5" />
+		 -->
 	</authentication-manager>
 
 </beans:beans>

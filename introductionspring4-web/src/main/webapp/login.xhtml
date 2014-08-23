@@ -25,11 +25,11 @@
 			<div class="wrapper">
 			    <h:form class="form-signin" prependId="false">
 			        <h2 class="form-signin-heading"> <h:outputText value="#{msg.loginTitle}" /> </h2>
-			        <h:inputText id="loginUsername" value="xx" styleClass="form-control" p:placeholder="#{msg.loginUserNamePlaceholder}" required="true" label="Email" />
-			        <h:inputSecret id="loginPassword" value="xx" styleClass="form-control" p:placeholder="#{msg.loginPasswordPlaceholder}" required="true" label="Senha"/>
+			        <h:inputText id="loginUsername" value="#{authenticator.username}" styleClass="form-control" p:placeholder="#{msg.loginUserNamePlaceholder}" required="true" label="Email" />
+			        <h:inputSecret id="loginPassword" value="#{authenticator.password}" styleClass="form-control" p:placeholder="#{msg.loginPasswordPlaceholder}" required="true" label="Senha"/>
 			        <h:selectBooleanCheckbox id="remember" value="xx" />
                     <h:outputLabel value="#{msg.loginRememberMeLabel}" for="remember" style="margin-left: 5px" />
-					<h:commandButton action="/pages/home.jsf" value="#{msg.loginButtonLogin}" styleClass="btn btn-lg btn-primary btn-block" type="submit" />
+					<h:commandButton action="#{authenticator.login}" value="#{msg.loginButtonLogin}" styleClass="btn btn-lg btn-primary btn-block" type="submit" />
 					<br/>
 			    </h:form>
 			    <center>

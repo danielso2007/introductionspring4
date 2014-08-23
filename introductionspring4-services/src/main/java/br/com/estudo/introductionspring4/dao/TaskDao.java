@@ -9,6 +9,6 @@ import br.com.estudo.introductionspring4.model.Task;
 
 public interface TaskDao extends GenericDao<Task, Long> {
 
-	List<Task> listarTask() throws DataAccessException;
+	public List<Task> listarTask() throws DataAccessException;
 
 }
